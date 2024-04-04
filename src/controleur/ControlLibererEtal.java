@@ -17,11 +17,11 @@ public class ControlLibererEtal {
 	 * 
 	 * @param produit
 	 * @return donneesEtal est un tableau de chaine contenant
-	 * 		[0] : un boolean indiquant si l'Ã©tal est occupÃ©
+	 * 		[0] : un boolean indiquant si l'étal est occupé
 	 * 		[1] : nom du vendeur
 	 * 		[2] : produit vendu
-	 * 		[3] : quantitÃ© de produit Ã  vendre au dÃ©but du marchÃ©
-	 * 		[4] : quantitÃ© de produit vendu
+	 * 		[3] : quantité de produit à  vendre au début du marché
+	 * 		[4] : quantité de produit vendu
 	 */
 	public String[] libererEtal(String nomVendeur) {
 		Etal etal=controlTrouverEtalVendeur.trouverEtalVendeur(nomVendeur);
@@ -30,8 +30,8 @@ public class ControlLibererEtal {
 			boolean etalOccupe=etal.isEtalOccupe();
 			String nomVendeurEtal=etal.getVendeur().getNom();
 			String produitVendu=etal.getProduit();
-			int quantiteInitial=etal.getQuantite();
-			int quantiteVendue=quantiteInitial-etal.getQuantite();
+			int quantiteInitial=etal.getQuantiteDebut();
+			int quantiteVendue=etal.getQuantiteDebut()-etal.getQuantite();
 			donneesEtal[0]=String.valueOf(etalOccupe);
 			donneesEtal[1]=nomVendeurEtal;
 			donneesEtal[2]=produitVendu;
