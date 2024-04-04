@@ -36,12 +36,13 @@ public class BoundaryPrendreEtal {
 		StringBuilder questionNomProduit=new StringBuilder("Quel produit souhaitez-vous vendre ?");
 		String nomProduit=null;
 		nomProduit=Clavier.entrerChaine(questionNomProduit.toString());
-		StringBuilder questionQteProduit=new StringBuilder("Quel produit souhaitez-vous vendre ?");
+		StringBuilder questionQteProduit=new StringBuilder("Combien souhaitez-vous en vendre ?");
 		int qteProduit=0;
 		qteProduit=Clavier.entrerEntier(questionQteProduit.toString());
 		int numeroEtal=controlPrendreEtal.prendreEtal(nomVendeur, nomProduit, qteProduit);
 		if(numeroEtal!=-1) {
-			System.out.println("Le vendeur "+nomVendeur+" s'est intallé à l'étal n°"+numeroEtal);
+			
+			System.out.println("Le vendeur "+nomVendeur+" s'est intallé à l'étal n°"+(numeroEtal+1));
 		}
 		
 	}

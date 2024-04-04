@@ -1,5 +1,7 @@
 package controleur;
 
+import villagegaulois.Etal;
+
 public class ControlLibererEtal {
 	private ControlTrouverEtalVendeur controlTrouverEtalVendeur;
 
@@ -7,8 +9,9 @@ public class ControlLibererEtal {
 			ControlTrouverEtalVendeur controlTrouverEtalVendeur) {
 		this.controlTrouverEtalVendeur = controlTrouverEtalVendeur;
 	}
-
-	//TODO a completer
+	public boolean isVendeur(String nomVendeur) {
+		return controlTrouverEtalVendeur.trouverEtalVendeur(nomVendeur) != null;
+	}
 
 	/**
 	 * 
@@ -21,8 +24,21 @@ public class ControlLibererEtal {
 	 * 		[4] : quantité de produit vendu
 	 */
 	public String[] libererEtal(String nomVendeur) {
-		//TODO a completer
-		String[] donneesEtal = null;
+		Etal etal=controlTrouverEtalVendeur.trouverEtalVendeur(nomVendeur);
+		String[] donneesEtal = new String[5];
+		if(etal!=null) {
+			boolean etalOccupe=etal.isEtalOccupe();
+			String nomVendeurEtal=etal.getVendeur().getNom();
+			String produitVendu=etal.getProduit();
+			int quantiteInitial=etal.getQuantite();
+			int quantiteVendue=quantiteInitial-etal.getQuantite();
+			donneesEtal[0]=String.valueOf(etalOccupe);
+			donneesEtal[1]=nomVendeurEtal;
+			donneesEtal[2]=produitVendu;
+			donneesEtal[3]=String.valueOf(quantiteInitial);
+			donneesEtal[4]=String.valueOf(quantiteVendue);
+		}
+		
 		return donneesEtal;
 	}
 
