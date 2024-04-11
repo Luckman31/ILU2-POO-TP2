@@ -26,19 +26,28 @@ public class BoundaryAcheterProduit {
 				System.out.println("Désolé, personne ne vend ce produit au marché.");
 			}
 			else {
-				StringBuilder animation=new StringBuilder("Chez quel commerçant voules-vous acheter des fleurs ?");
+				StringBuilder animation=new StringBuilder("Chez quel commerçant voules-vous acheter des "+nomProduit+" ?\n");
 				int personne=0;
-				for(int i=0;i<controlAcheterProduit.produitSurMarche(nomProduit).length;i++) {
-					animation.append(i+"- "+controlAcheterProduit.produitSurMarche(nomProduit)[i]);
+				for(int i=1;i<=controlAcheterProduit.produitSurMarche(nomProduit).length;i++) {
+					animation.append(i+1+"- "+controlAcheterProduit.produitSurMarche(nomProduit)[i].getNom()+"\n");
 				}
 				personne=Clavier.entrerEntier(animation.toString());
 				
-				if(personne>controlAcheterProduit.produitSurMarche(nomProduit).length) {
-					
-				}
-				StringBuilder questionQteProduit=new StringBuilder(nomAcheteur+"se déplace jusqu'à l'étal du vendeur "+controlAcheterProduit.produitSurMarche(nomProduit)[personne]+"\nBonjour "+nomAcheteur+"\nCombien de "+nomProduit+" voulez-vous acheter ?");
+				String nomVendeur=controlAcheterProduit.produitSurMarche(nomProduit)[personne].toString();
+				StringBuilder questionQteProduit=new StringBuilder(nomAcheteur+"se déplace jusqu'à l'étal du vendeur "+nomVendeur+"\nBonjour "+nomAcheteur+"\nCombien de "+nomProduit+" voulez-vous acheter ?");
 				int qteProduit=0;
 				qteProduit=Clavier.entrerEntier(questionQteProduit.toString());
+				int qteDispo=controlAcheterProduit.quantiteDispo(nomVendeur);
+				if(qteDispo==0) {
+					System.out.println(nomAcheteur+" veut acheter "+qteProduit+" "+nomProduit+", malheureusement il n'y en a plus");
+				}
+				else if(qteProduit>qteDispo) {
+					System.out.println(nomAcheteur+" veut acheter "+qteProduit+" "+nomProduit+", malheureusement. "+nomVendeur+" n'en a plus que "+qteDispo+". "+nomAcheteur+" achète tout le stock de Bonemine.");
+					qteDispo=0;
+				}
+				else {
+					System.out.println(nomAcheteur+" achète "+qteProduit+" "+nomProduit+"à "+nomVendeur+".");
+				}
 				
 			}
 		}
