@@ -34,6 +34,7 @@ public class BoundaryAcheterProduit {
 				StringBuilder quantite=new StringBuilder("Bonjour "+vendeurs[choixCommercant]);
 				quantite.append("\n Combien de "+produit+" voulez-vous acheter ?");
 				int choixQuantite=Clavier.entrerEntier(quantite.toString());
+				
 			}
 		}
 	}
