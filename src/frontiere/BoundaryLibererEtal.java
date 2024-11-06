@@ -16,7 +16,11 @@ public class BoundaryLibererEtal {
 		}
 		else {
 			String[] etal=controlLibererEtal.libererEtal(nomVendeur);
-			boolean etalOccupe=Boolean.valueOf(etal[0]);
+			boolean etalOccupe=Boolean.parseBoolean(etal[0]);
+			if(etalOccupe) {
+				System.out.println("Vous avez vendu "+etal[4]+ " sur "+etal[3]+" "+etal[2]+".");
+				System.out.println("En revoir "+etal[1]+", passez une bonne journée");
+			}
 		}
 	}
 
