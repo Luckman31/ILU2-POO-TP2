@@ -28,5 +28,18 @@ public class ControlAcheterProduit {
 		}
 		return vendeur;
 	}
+	public String[] libererEtal(String nomVendeur) {
+		String[] donneesEtal = new String[5];
+		donneesEtal[0]=controlTrouverEtalVendeur.trouverEtalVendeur(nomVendeur).etatEtal()[0];;
+		donneesEtal[1]=controlTrouverEtalVendeur.trouverEtalVendeur(nomVendeur).etatEtal()[1];
+		donneesEtal[2]=controlTrouverEtalVendeur.trouverEtalVendeur(nomVendeur).etatEtal()[2];
+		donneesEtal[3]=controlTrouverEtalVendeur.trouverEtalVendeur(nomVendeur).etatEtal()[3];
+		donneesEtal[4]=controlTrouverEtalVendeur.trouverEtalVendeur(nomVendeur).etatEtal()[4];
+		return donneesEtal;
+	}
+	public int modifierQuantite(int quantite, String nomVendeur) {
+		Gaulois gaulois=village.trouverHabitant(nomVendeur);
+		return village.rechercherEtal(gaulois).acheterProduit(quantite);
+	}
 	
 }
