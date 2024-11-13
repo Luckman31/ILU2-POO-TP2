@@ -37,7 +37,7 @@ public class ControlAcheterProduit {
 		donneesEtal[4]=controlTrouverEtalVendeur.trouverEtalVendeur(nomVendeur).etatEtal()[4];
 		return donneesEtal;
 	}
-	public int modifierQuantite(int quantite, String nomVendeur) {
+	public int acheterProduit( String nomVendeur,int quantite) {
 		Gaulois gaulois=village.trouverHabitant(nomVendeur);
 		return village.rechercherEtal(gaulois).acheterProduit(quantite);
 	}

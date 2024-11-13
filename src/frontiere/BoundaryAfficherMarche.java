@@ -1,7 +1,5 @@
 package frontiere;
 
-import java.util.Iterator;
-
 import controleur.ControlAfficherMarche;
 
 public class BoundaryAfficherMarche {
