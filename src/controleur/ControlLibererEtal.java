@@ -28,11 +28,13 @@ public class ControlLibererEtal {
 		String[] donneesEtal = new String[5];
 		Etal vendeur=controlTrouverEtalVendeur.trouverEtalVendeur(nomVendeur);
 		if(vendeur!=null) {
-			donneesEtal[0]=controlTrouverEtalVendeur.trouverEtalVendeur(nomVendeur).etatEtal()[0];;
+			donneesEtal[0]=controlTrouverEtalVendeur.trouverEtalVendeur(nomVendeur).etatEtal()[0];
 			donneesEtal[1]=controlTrouverEtalVendeur.trouverEtalVendeur(nomVendeur).etatEtal()[1];
 			donneesEtal[2]=controlTrouverEtalVendeur.trouverEtalVendeur(nomVendeur).etatEtal()[2];
 			donneesEtal[3]=controlTrouverEtalVendeur.trouverEtalVendeur(nomVendeur).etatEtal()[3];
 			donneesEtal[4]=controlTrouverEtalVendeur.trouverEtalVendeur(nomVendeur).etatEtal()[4];
+		}else {
+			donneesEtal=null;
 		}
 		return donneesEtal;
 	}
