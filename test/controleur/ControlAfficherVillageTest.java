@@ -11,7 +11,6 @@ import villagegaulois.Village;
 class ControlAfficherVillageTest {
 	private Village village;
 	private Chef abraracourcix;
-	private ControlTrouverEtalVendeur controlTrouverEtalVendeur;
 	private ControlPrendreEtal controlPrendreEtal;
 	private ControlEmmenager controlEmmenager;
 	private ControlVerifierIdentite controlVerifierIdentite;
@@ -21,7 +20,6 @@ class ControlAfficherVillageTest {
 		village=new Village("le village des irréductibles",10,5);
 		abraracourcix=new Chef("Abraracourcix",10,village);
 		village.setChef(abraracourcix);
-		controlTrouverEtalVendeur=new ControlTrouverEtalVendeur(village);
 		controlEmmenager=new ControlEmmenager(village);
 		controlVerifierIdentite=new ControlVerifierIdentite(village);
 		controlPrendreEtal=new ControlPrendreEtal(controlVerifierIdentite,village);
@@ -34,17 +32,24 @@ class ControlAfficherVillageTest {
 
 	@Test
 	void testDonnerNomsVillageois() {
-		fail("Not yet implemented");
+		ControlAfficherVillage controlAfficherVillage=new ControlAfficherVillage(village);
+		assertNotNull(controlAfficherVillage.donnerNomsVillageois());
+		
 	}
 
 	@Test
 	void testDonnerNomVillage() {
-		fail("Not yet implemented");
+		ControlAfficherVillage controlAfficherVillage=new ControlAfficherVillage(village);
+		assertNotNull(controlAfficherVillage.donnerNomVillage());
 	}
 
 	@Test
 	void testDonnerNbEtals() {
-		fail("Not yet implemented");
+		ControlAfficherVillage controlAfficherVillage=new ControlAfficherVillage(village);
+
+		controlEmmenager.ajouterGaulois("Bonemine", 3);
+		controlPrendreEtal.prendreEtal("Bonemine", "fleurs", 10);
+		assertNotNull(controlAfficherVillage.donnerNbEtals());
 	}
 
 }

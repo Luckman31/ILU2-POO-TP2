@@ -44,6 +44,7 @@ class ControlLibererEtalTest {
 	@Test
 	void testLibererEtal() {
 		ControlLibererEtal controlLibererEtal=new ControlLibererEtal(controlTrouverEtalVendeur);
+		assertNull(controlLibererEtal.libererEtal("Bonemine"));
 		controlEmmenager.ajouterGaulois("Bonemine", 10);
 		controlPrendreEtal.prendreEtal("Bonemine", "fleurs", 10);
 		assertNotNull(controlLibererEtal.libererEtal("Bonemine"));
