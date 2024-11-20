@@ -12,6 +12,22 @@ public class BoundaryAcheterProduit {
 		this.controlAcheterProduit = controlAcheterProduit;
 	}
 	
+	
+	public String quantiteRestanteAffichage(int quantiteRestante,String nomAcheteur, int choixQuantite,String produit,String[] vendeurs,int choixCommercant) {
+		StringBuilder affichage=new StringBuilder();
+		if (quantiteRestante == 0) {
+			 affichage.append(nomAcheteur + " veut acheter " + choixQuantite + " " + produit
+					+ ", malheureusement il n'y en a plus !");
+		} else if (quantiteRestante < choixQuantite) {
+			affichage.append(nomAcheteur + " veut acheter " + choixQuantite + " " + produit
+					+ ", malheureusement " + vendeurs[choixCommercant] + " n'en a plus que " + quantiteRestante
+					+ ". " + nomAcheteur + " achète tout le stock de " + vendeurs[choixCommercant]);
+		} else {
+			affichage.append(nomAcheteur + " achète " + choixQuantite + " " + produit + " à"
+					+ vendeurs[choixCommercant] + ".");
+		}
+		return affichage.toString();
+	}
 	public void acheterProduit(String nomAcheteur) {
 		if (!controlAcheterProduit.verifierIdentite(nomAcheteur)) {
 			System.out.println("Je suis d�sol�e " + nomAcheteur
@@ -37,17 +53,7 @@ public class BoundaryAcheterProduit {
 				quantite.append("\n Combien de " + produit + " voulez-vous acheter ?");
 				int choixQuantite = Clavier.entrerEntier(quantite.toString());
 				int quantiteRestante = controlAcheterProduit.acheterProduit(vendeurs[choixCommercant], choixQuantite);
-				if (quantiteRestante == 0) {
-					System.out.println(nomAcheteur + " veut acheter " + choixQuantite + " " + produit
-							+ ", malheureusement il n'y en a plus !");
-				} else if (quantiteRestante < choixQuantite) {
-					System.out.println(nomAcheteur + " veut acheter " + choixQuantite + " " + produit
-							+ ", malheureusement " + vendeurs[choixCommercant] + " n'en a plus que " + quantiteRestante
-							+ ". " + nomAcheteur + " achète tout le stock de " + vendeurs[choixCommercant]);
-				} else {
-					System.out.println(nomAcheteur + " achète " + choixQuantite + " " + produit + " à"
-							+ vendeurs[choixCommercant] + ".");
-				}
+				quantiteRestanteAffichage(quantiteRestante, nomAcheteur, choixQuantite, produit, vendeurs, choixCommercant);
 
 			}
 		}
