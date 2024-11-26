@@ -13,7 +13,7 @@ public class BoundaryAcheterProduit {
 	}
 	
 	
-	public String quantiteRestanteAffichage(int quantiteRestante,String nomAcheteur, int choixQuantite,String produit,String[] vendeurs,int choixCommercant) {
+	private String quantiteRestanteAffichage(int quantiteRestante,String nomAcheteur, int choixQuantite,String produit,String[] vendeurs,int choixCommercant) {
 		StringBuilder affichage=new StringBuilder();
 		if (quantiteRestante == 0) {
 			 affichage.append(nomAcheteur + " veut acheter " + choixQuantite + " " + produit
@@ -28,11 +28,26 @@ public class BoundaryAcheterProduit {
 		}
 		return affichage.toString();
 	}
+	private int choisirVendeur(String[] vendeurs,String produit) {
+		StringBuilder commercant = new StringBuilder("Chez quel commer�ant voulez-vous acheter des "+produit +" ?");
+
+		int i;
+		for (i = 0; i < vendeurs.length; i++) {
+			commercant.append("\n" + (i + 1) + " - " + vendeurs[i]);
+		}
+		return Clavier.entrerEntier(commercant.toString()) - 1;
+	}
+	private int quantiteChoisi(String produit, String vendeur, String nomAcheteur) {
+		System.out.println(
+				nomAcheteur + " se d�place jusqu'� l'�tal du vendeur " + vendeur);
+		StringBuilder quantite = new StringBuilder("Bonjour " + nomAcheteur);
+		quantite.append("\n Combien de " + produit + " voulez-vous acheter ?");
+		return Clavier.entrerEntier(quantite.toString());
+	}
 	public void acheterProduit(String nomAcheteur) {
 		if (!controlAcheterProduit.verifierIdentite(nomAcheteur)) {
 			System.out.println("Je suis d�sol�e " + nomAcheteur
 					+ " mais il faut �tre un habitant de notre village pour commercer ici");
-
 		} else {
 			StringBuilder acheter = new StringBuilder("Quel produit voulez-vous acheter ? ");
 			String produit = Clavier.entrerChaine(acheter.toString());
@@ -40,21 +55,10 @@ public class BoundaryAcheterProduit {
 			if (vendeurs==null) {
 				System.out.println("D�sol�, personne ne vend ce produit au march�");
 			} else {
-				StringBuilder commercant = new StringBuilder("Chez quel commer�ant voulez-vous acheter des fleurs ?");
-
-				int i;
-				for (i = 0; i < vendeurs.length; i++) {
-					commercant.append("\n" + (i + 1) + " - " + vendeurs[i]);
-				}
-				int choixCommercant = Clavier.entrerEntier(commercant.toString()) - 1;
-				System.out.println(
-						nomAcheteur + " se d�place jusqu'� l'�tal du vendeur " + vendeurs[choixCommercant]);
-				StringBuilder quantite = new StringBuilder("Bonjour " + nomAcheteur);
-				quantite.append("\n Combien de " + produit + " voulez-vous acheter ?");
-				int choixQuantite = Clavier.entrerEntier(quantite.toString());
+				int choixCommercant = choisirVendeur(vendeurs,produit);
+				int choixQuantite = quantiteChoisi(produit, vendeurs[choixCommercant], nomAcheteur);
 				int quantiteRestante = controlAcheterProduit.acheterProduit(vendeurs[choixCommercant], choixQuantite);
-				quantiteRestanteAffichage(quantiteRestante, nomAcheteur, choixQuantite, produit, vendeurs, choixCommercant);
-
+				System.out.println(quantiteRestanteAffichage(quantiteRestante, nomAcheteur, choixQuantite, produit, vendeurs, choixCommercant));
 			}
 		}
 	}
